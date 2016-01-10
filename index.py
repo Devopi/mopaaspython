@@ -13,8 +13,8 @@ class hello:
         return 'Hello, ' + name + '!'
 
 class runcommand:
-    str=''
     def GET(self, command):
+        str=''
         if not command:
             return
         tmp = os.popen(command).readlines()
