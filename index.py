@@ -19,7 +19,8 @@ class runcommand:
             return
         tmp = os.popen(command).readlines()
         for line in tmp:
-            str += (line+'<br/>')
+            str += line
+            str += '<br/>'
         return str
 
 application = app.wsgifunc()
