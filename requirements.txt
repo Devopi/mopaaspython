@@ -1,4 +1,5 @@
 greenlet
 gevent
 gunicorn
+MySQL-python
 web.py
